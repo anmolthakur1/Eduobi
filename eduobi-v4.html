@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Eduobi — by Obi Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{font-family:'DM Sans',sans-serif;background:#0A0A14;color:#E8E8F0;min-height:100vh;overscroll-behavior:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#1A1A2E}::-webkit-scrollbar-thumb{background:#FF6B00;border-radius:2px}
+
+/* BUTTONS */
+.bp{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FF6B00,#FF9500);color:#fff;border:none;padding:11px 22px;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;font-size:14px;transition:transform .15s,box-shadow .15s}
+.bp:active{transform:scale(.97)}
+.bs{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:#FF6B00;border:1.5px solid #FF6B00;padding:11px 22px;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;font-size:14px;transition:background .15s}
+.bs:active{background:rgba(255,107,0,.1)}
+.bg2{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);color:#E8E8F0;border:1px solid rgba(255,255,255,.09);padding:9px 15px;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;font-size:13px;transition:background .15s}
+.bg2:active{background:rgba(255,255,255,.1)}
+
+/* INPUTS */
+.inp{width:100%;background:#1A2440;border:1.5px solid #243154;color:#E8E8F0;padding:13px 15px;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;-webkit-appearance:none;transition:border-color .2s}
+.inp:focus{border-color:#FF6B00}
+.inp::placeholder{color:#5A6580}
+select.inp{cursor:pointer}
+select.inp option{background:#1A2440;color:#E8E8F0}
+
+/* CARDS */
+.card{background:#131929;border-radius:14px;border:1px solid #1A2440}
+.card-h{background:#131929;border-radius:14px;border:1px solid #1A2440;transition:transform .2s,border-color .2s;cursor:pointer}
+.card-h:active{transform:scale(.98);border-color:rgba(255,107,0,.3)}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.3px}
+.bo{background:rgba(255,107,0,.18);color:#FF6B00}
+.bg3{background:rgba(0,212,170,.13);color:#00D4AA}
+.bb{background:rgba(74,144,226,.15);color:#4A90E2}
+.bgold{background:rgba(255,215,0,.13);color:#FFD700}
+.br{background:rgba(233,69,96,.15);color:#E94560}
+
+/* NAV */
+.navbtn{color:#8892A4;cursor:pointer;padding:7px 11px;border-radius:8px;font-size:13px;font-weight:500;border:none;background:none;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:color .15s,background .15s}
+.navbtn.act,.navbtn:hover{color:#FF6B00;background:rgba(255,107,0,.08)}
+.tabbtn{padding:8px 16px;border-radius:9px;border:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s,color .15s;background:transparent;color:#8892A4}
+.tabbtn.act{background:#FF6B00;color:#fff}
+.tabbtn:not(.act):active{background:rgba(255,255,255,.07)}
+
+/* PROGRESS */
+.pbar{height:6px;background:#1A2440;border-radius:4px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,#FF6B00,#FF9500);border-radius:4px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes dot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 8px rgba(255,107,0,.4)}50%{box-shadow:0 0 22px rgba(255,107,0,.8)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.fu{animation:fadeUp .35s ease both}
+.pi{animation:popIn .28s ease both}
+.fi{animation:fadeIn .25s ease both}
+
+/* OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;z-index:2000;animation:fadeIn .2s ease;padding:16px}
+.mbox{background:#131929;border-radius:20px;border:1px solid #243154;padding:26px 24px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;animation:popIn .28s ease}
+
+/* CHAT BUBBLES */
+.ai-bub{background:linear-gradient(135deg,#1A2440,#141E34);border:1px solid rgba(255,107,0,.18);border-radius:14px 14px 14px 4px;padding:12px 15px;max-width:83%;font-size:13px;line-height:1.65}
+.usr-bub{background:linear-gradient(135deg,#FF6B00,#FF9500);border-radius:14px 14px 4px 14px;padding:11px 14px;max-width:72%;font-size:13px;color:#fff;align-self:flex-end;margin-left:auto}
+.tdot{width:7px;height:7px;background:#FF6B00;border-radius:50%;display:inline-block;animation:dot 1.2s infinite}
+
+/* TOAST */
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:#1A2440;border:1px solid rgba(255,107,0,.3);color:#E8E8F0;padding:11px 18px;border-radius:11px;font-size:13px;font-weight:500;z-index:3000;animation:popIn .3s ease;box-shadow:0 8px 30px rgba(0,0,0,.5);white-space:nowrap;pointer-events:none}
+
+/* MISC */
+.ndot{width:8px;height:8px;background:#E94560;border-radius:50%;position:absolute;top:-2px;right:-2px;animation:pulse 2s infinite}
+.row{display:flex;align-items:center}
+.col{display:flex;flex-direction:column}
+.gap8{gap:8px}.gap12{gap:12px}.gap16{gap:16px}
+.hidden{display:none!important}
+hr.div{border:none;border-top:1px solid #1A2440;margin:2px 0}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav id="topnav" style="background:rgba(10,10,20,.97);backdrop-filter:blur(14px);border-bottom:1px solid #1A2440;position:sticky;top:0;z-index:100">
+  <div style="max-width:1160px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:58px;gap:12px">
+    <!-- Logo -->
+    <div onclick="goTo('home')" style="display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0">
+      <div style="width:34px;height:34px;background:linear-gradient(135deg,#FF6B00,#FF9500);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px">🎓</div>
+      <div>
+        <div style="font-family:Syne;font-weight:800;font-size:17px;line-height:1">Eduobi</div>
+        <div style="font-size:9px;color:#5A6580;letter-spacing:1px">OBI ENTERPRISES</div>
+      </div>
+    </div>
+    <!-- Desktop nav links -->
+    <div id="desknav" style="display:flex;gap:1px;flex:1;margin-left:10px;flex-wrap:nowrap;overflow:hidden">
+      <button class="navbtn act" data-page="home" onclick="goTo('home')">Home</button>
+      <button class="navbtn" data-page="batches" onclick="goTo('batches')">Batches</button>
+      <button class="navbtn" data-page="lectures" onclick="goTo('lectures')">Lectures</button>
+      <button class="navbtn" data-page="tests" onclick="goTo('tests')">Tests</button>
+      <button class="navbtn" data-page="about" onclick="goTo('about')">About</button>
+      <button class="navbtn hidden" data-page="dashboard" id="dashnavbtn" onclick="goTo('dashboard')">My Learning</button>
+    </div>
+    <!-- Right -->
+    <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
+      <button onclick="toggleAI()" style="background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.35);border-radius:9px;padding:7px 12px;color:#FF6B00;cursor:pointer;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;position:relative">
+        🤖 Obi AI<span class="ndot" id="ainot"></span>
+      </button>
+      <button class="bp" id="loginbtn" onclick="openAuth()" style="padding:8px 15px;font-size:13px">Login</button>
+      <div id="userbtn" class="hidden" style="display:flex;align-items:center;gap:7px">
+        <div id="useravatar" onclick="goTo('dashboard')" style="width:34px;height:34px;background:linear-gradient(135deg,#FF6B00,#FF9500);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:700;color:#fff;font-size:14px">U</div>
+        <button class="bg2" onclick="doLogout()" style="font-size:12px;padding:6px 10px">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGES CONTAINER -->
+<div id="pages" style="padding-bottom:68px">
+
+  <!-- ══ HOME ══ -->
+  <div id="page-home" class="fu">
+    <!-- Hero -->
+    <div style="background:linear-gradient(160deg,#0A0A14 0%,#131929 55%,#0A0A14 100%);padding:50px 18px 64px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-80px;right:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(255,107,0,.07),transparent 70%);pointer-events:none"></div>
+      <div style="max-width:800px;margin:0 auto;position:relative">
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="badge bo" style="animation:glow 2s infinite">🚀 Eduobi — Launched 2026</span>
+          <span class="badge bg3">✅ 1000+ Students</span>
+        </div>
+        <h1 style="font-family:Syne;font-weight:800;font-size:clamp(26px,7vw,54px);line-height:1.1;margin-bottom:14px">
+          Learn from the <span style="color:#FF6B00">Best Minds.</span><br>
+          Crack <span style="color:#E94560">JEE & NEET</span> 2026.
+        </h1>
+        <p style="color:#8892A4;font-size:14.5px;margin-bottom:26px;max-width:480px;line-height:1.75">
+          Affordable, world-class education for every Indian student — backed by <strong style="color:#FF6B00">Obi AI</strong>, your 24/7 doubt solver.
+        </p>
+        <div style="display:flex;gap:11px;flex-wrap:wrap">
+          <button class="bp" id="hero-cta" onclick="heroCta()" style="font-size:14px;padding:13px 24px">Start Learning Free →</button>
+          <button class="bs" onclick="goTo('batches')" style="font-size:14px;padding:13px 24px">Browse Courses</button>
+        </div>
+        <!-- Stats -->
+        <div style="display:flex;gap:28px;margin-top:38px;flex-wrap:wrap">
+          <div><div style="font-family:Syne;font-weight:800;font-size:24px;color:#FF6B00">1000+</div><div style="color:#8892A4;font-size:12px;margin-top:2px">Students</div></div>
+          <div><div style="font-family:Syne;font-weight:800;font-size:24px;color:#FF6B00">50+</div><div style="color:#8892A4;font-size:12px;margin-top:2px">Educators</div></div>
+          <div><div style="font-family:Syne;font-weight:800;font-size:24px;color:#FF6B00">100+</div><div style="color:#8892A4;font-size:12px;margin-top:2px">Hrs Content</div></div>
+          <div><div style="font-family:Syne;font-weight:800;font-size:24px;color:#FF6B00">2026</div><div style="color:#8892A4;font-size:12px;margin-top:2px">Founded</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Goals -->
+    <div style="padding:38px 18px;max-width:1060px;margin:0 auto">
+      <h2 style="font-family:Syne;font-weight:700;font-size:22px;margin-bottom:4px">Browse by Goal</h2>
+      <p style="color:#8892A4;font-size:13px;margin-bottom:20px">Find the perfect batch for your journey</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:11px" id="goals-grid"></div>
+    </div>
+
+    <!-- Top Batches -->
+    <div style="padding:0 18px 40px;max-width:1060px;margin:0 auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div>
+          <h2 style="font-family:Syne;font-weight:700;font-size:22px">Top Batches 🔥</h2>
+          <p style="color:#8892A4;font-size:12px;margin-top:3px">Chosen by lakhs of successful students</p>
+        </div>
+        <button class="bg2" onclick="goTo('batches')">View All →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" id="home-batches"></div>
+    </div>
+
+    <!-- Obi AI Banner -->
+    <div style="padding:0 18px 40px;max-width:1060px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#131929,#1A2440);border:1px solid rgba(255,107,0,.2);border-radius:18px;padding:26px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+        <div style="font-size:52px">🤖</div>
+        <div style="flex:1;min-width:180px">
+          <span class="badge bo" style="margin-bottom:8px;display:inline-block">✨ AI-Powered · Free</span>
+          <h3 style="font-family:Syne;font-weight:800;font-size:20px;margin-bottom:8px;margin-top:5px">Meet Obi AI — Your 24/7 Doubt Solver</h3>
+          <p style="color:#8892A4;line-height:1.7;font-size:13.5px">Ask any doubt in Physics, Chemistry, Maths or Biology. Instant step-by-step answers. Free for all students!</p>
+        </div>
+        <button class="bp" onclick="toggleAI()" style="padding:12px 20px;white-space:nowrap">Try Obi AI →</button>
+      </div>
+    </div>
+
+    <!-- Why Eduobi -->
+    <div style="padding:0 18px 52px;max-width:1060px;margin:0 auto">
+      <h2 style="font-family:Syne;font-weight:700;font-size:22px;margin-bottom:18px;text-align:center">Why Students Choose Eduobi</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px">
+        <div class="card" style="padding:18px"><div style="font-size:24px;margin-bottom:8px">💰</div><div style="font-weight:600;font-size:13.5px;margin-bottom:5px">Ultra Affordable</div><div style="color:#8892A4;font-size:12.5px;line-height:1.6">Premium education at 1/10th the price of offline coaching.</div></div>
+        <div class="card" style="padding:18px"><div style="font-size:24px;margin-bottom:8px">🤖</div><div style="font-weight:600;font-size:13.5px;margin-bottom:5px">Obi AI Doubts</div><div style="color:#8892A4;font-size:12.5px;line-height:1.6">24/7 AI assistant for instant doubt resolution — free.</div></div>
+        <div class="card" style="padding:18px"><div style="font-size:24px;margin-bottom:8px">📱</div><div style="font-weight:600;font-size:13.5px;margin-bottom:5px">Learn Anywhere</div><div style="color:#8892A4;font-size:12.5px;line-height:1.6">Mobile-first — study on the go, any time.</div></div>
+        <div class="card" style="padding:18px"><div style="font-size:24px;margin-bottom:8px">🏆</div><div style="font-weight:600;font-size:13.5px;margin-bottom:5px">Proven Results</div><div style="color:#8892A4;font-size:12.5px;line-height:1.6">95% of our students crack their target exam.</div></div>
+        <div class="card" style="padding:18px"><div style="font-size:24px;margin-bottom:8px">👥</div><div style="font-weight:600;font-size:13.5px;margin-bottom:5px">Live Classes</div><div style="color:#8892A4;font-size:12.5px;line-height:1.6">Interactive live sessions with India's top educators.</div></div>
+        <div class="card" style="padding:18px"><div style="font-size:24px;margin-bottom:8px">📊</div><div style="font-weight:600;font-size:13.5px;margin-bottom:5px">Analytics</div><div style="color:#8892A4;font-size:12.5px;line-height:1.6">Track progress, find weak areas, improve faster.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BATCHES ══ -->
+  <div id="page-batches" class="hidden fu">
+    <div style="padding:26px 18px;max-width:1060px;margin:0 auto">
+      <h2 style="font-family:Syne;font-weight:800;font-size:24px;margin-bottom:4px">All Batches</h2>
+      <p style="color:#8892A4;font-size:13px;margin-bottom:20px">Choose your batch and start your journey</p>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px" id="batch-filters">
+        <button class="tabbtn act" onclick="filterBatches('all',this)">All</button>
+        <button class="tabbtn" onclick="filterBatches('jee',this)">JEE</button>
+        <button class="tabbtn" onclick="filterBatches('neet',this)">NEET</button>
+        <button class="tabbtn" onclick="filterBatches('11',this)">Class 11</button>
+        <button class="tabbtn" onclick="filterBatches('12',this)">Class 12</button>
+        <button class="tabbtn" onclick="filterBatches('cuet',this)">CUET</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" id="batches-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══ LECTURES ══ -->
+  <div id="page-lectures" class="hidden fu">
+    <div style="padding:26px 18px;max-width:1060px;margin:0 auto">
+      <h2 style="font-family:Syne;font-weight:800;font-size:24px;margin-bottom:4px">Video Lectures</h2>
+      <p style="color:#8892A4;font-size:13px;margin-bottom:20px">Watch curated lectures by India's top educators</p>
+      <div id="lec-login-banner" class="hidden" style="background:linear-gradient(135deg,#131929,#1A2440);border:1px solid rgba(255,107,0,.2);border-radius:16px;padding:22px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div style="font-size:32px">🔐</div>
+        <div style="flex:1"><div style="font-family:Syne;font-weight:700;font-size:15px;margin-bottom:4px">Login to Access All Lectures</div><div style="color:#8892A4;font-size:13px">Free lectures are open to all. Login to unlock enrolled-batch lectures.</div></div>
+        <button class="bp" onclick="openAuth()">Login / Register</button>
+      </div>
+      <!-- Subject filter tabs -->
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px">
+        <button class="tabbtn lec-tab act" data-sub="All" onclick="renderLectures('All')">All</button>
+        <button class="tabbtn lec-tab" data-sub="Physics" onclick="renderLectures('Physics')">Physics</button>
+        <button class="tabbtn lec-tab" data-sub="Chemistry" onclick="renderLectures('Chemistry')">Chemistry</button>
+        <button class="tabbtn lec-tab" data-sub="Maths" onclick="renderLectures('Maths')">Maths</button>
+        <button class="tabbtn lec-tab" data-sub="Biology" onclick="renderLectures('Biology')">Biology</button>
+      </div>
+      <!-- Dynamic lectures content -->
+      <div id="lec-content"></div>
+    </div>
+  </div>
+
+  <!-- ══ TESTS ══ -->
+  <div id="page-tests" class="hidden fu">
+    <div id="tests-list" style="padding:26px 18px;max-width:1060px;margin:0 auto">
+      <h2 style="font-family:Syne;font-weight:800;font-size:24px;margin-bottom:4px">Test Series</h2>
+      <p style="color:#8892A4;font-size:13px;margin-bottom:22px">Practice with real exam-pattern tests · <span id="tests-login-hint" style="color:#FF6B00">Login to attempt</span></p>
+      <div style="display:flex;flex-direction:column;gap:12px" id="tests-grid"></div>
+    </div>
+    <!-- Test runner -->
+    <div id="test-runner" class="hidden" style="padding:14px 16px 80px;max-width:760px;margin:0 auto"></div>
+    <!-- Test result -->
+    <div id="test-result" class="hidden" style="padding:32px 18px 80px;max-width:680px;margin:0 auto"></div>
+  </div>
+
+  <!-- ══ ABOUT ══ -->
+  <div id="page-about" class="hidden fu">
+    <div style="padding:42px 18px 52px;max-width:840px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:40px">
+        <div style="width:72px;height:72px;background:linear-gradient(135deg,#FF6B00,#FF9500);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px">🎓</div>
+        <h1 style="font-family:Syne;font-weight:800;font-size:30px;margin-bottom:10px">About Eduobi</h1>
+        <p style="color:#8892A4;font-size:14px;line-height:1.85;max-width:520px;margin:0 auto">India's most affordable & innovative EdTech platform — making quality education accessible to every student regardless of background.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:38px">
+        <div class="card" style="padding:20px"><div style="font-size:28px;margin-bottom:11px">🎯</div><h3 style="font-family:Syne;font-weight:700;font-size:15px;margin-bottom:8px">Our Mission</h3><p style="color:#8892A4;font-size:13px;line-height:1.7">Democratize quality education — every student gets world-class teaching at the most affordable price.</p></div>
+        <div class="card" style="padding:20px"><div style="font-size:28px;margin-bottom:11px">👁️</div><h3 style="font-family:Syne;font-weight:700;font-size:15px;margin-bottom:8px">Our Vision</h3><p style="color:#8892A4;font-size:13px;line-height:1.7">India's #1 EdTech platform where every sincere student cracks their target exam.</p></div>
+        <div class="card" style="padding:20px"><div style="font-size:28px;margin-bottom:11px">💡</div><h3 style="font-family:Syne;font-weight:700;font-size:15px;margin-bottom:8px">Our Approach</h3><p style="color:#8892A4;font-size:13px;line-height:1.7">AI-powered learning, India's best educators, and a community that grows with you.</p></div>
+      </div>
+      <!-- Founder -->
+      <div style="background:linear-gradient(135deg,#131929,#1A2440);border:1px solid rgba(255,107,0,.2);border-radius:18px;padding:32px 24px;text-align:center;margin-bottom:28px">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,#FF6B00,#E94560);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px">👨‍💼</div>
+        <span class="badge bo" style="margin-bottom:11px">Founder & CEO</span>
+        <h2 style="font-family:Syne;font-weight:800;font-size:26px;margin:10px 0">Anmol Thakur</h2>
+        <p style="color:#8892A4;line-height:1.85;max-width:480px;margin:0 auto 18px;font-size:13.5px">A visionary educator & entrepreneur who built Eduobi with one belief — <em style="color:#E8E8F0">no student should quit their dreams because education is too expensive.</em></p>
+        <div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap">
+          <span class="badge bb">Full Stack Developer</span>
+          <span class="badge bg3">EdTech Pioneer</span>
+          <span class="badge bgold">Obi Enterprises</span>
+        </div>
+      </div>
+      <!-- Company -->
+      <div class="card" style="padding:24px;text-align:center">
+        <h3 style="font-family:Syne;font-weight:700;font-size:20px;margin-bottom:6px">Obi Enterprises</h3>
+        <p style="color:#8892A4;line-height:1.7;margin-bottom:20px;font-size:13.5px">Eduobi is a product of <strong style="color:#E8E8F0">Obi Enterprises</strong> — a technology company transforming education through AI, innovation & community.</p>
+        <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap">
+          <div><div style="font-family:Syne;font-weight:800;font-size:22px;color:#FF6B00">2026</div><div style="color:#8892A4;font-size:12px">Founded</div></div>
+          <div><div style="font-family:Syne;font-weight:800;font-size:22px;color:#FF6B00">1000+</div><div style="color:#8892A4;font-size:12px">Students</div></div>
+          <div><div style="font-family:Syne;font-weight:800;font-size:22px;color:#FF6B00">50+</div><div style="color:#8892A4;font-size:12px">Educators</div></div>
+          <div><div style="font-family:Syne;font-weight:800;font-size:22px;color:#FF6B00">🇮🇳</div><div style="color:#8892A4;font-size:12px">Pan India</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DASHBOARD ══ -->
+  <div id="page-dashboard" class="hidden fu">
+    <div style="padding:22px 18px;max-width:1060px;margin:0 auto" id="dash-content"></div>
+  </div>
+
+</div><!-- /pages -->
+
+<!-- BOTTOM NAV -->
+<div style="position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,20,.98);backdrop-filter:blur(14px);border-top:1px solid #1A2440;display:flex;z-index:99;padding:5px 0 10px">
+  <button onclick="goTo('home')" class="bnav" data-page="home" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;cursor:pointer;padding:3px 0">
+    <span style="font-size:18px">🏠</span><span class="bnav-lbl" style="font-size:9px;color:#FF6B00;font-family:'DM Sans',sans-serif;font-weight:700">Home</span><span class="bnav-dot" style="width:4px;height:4px;background:#FF6B00;border-radius:50%;display:block"></span>
+  </button>
+  <button onclick="goTo('batches')" class="bnav" data-page="batches" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;cursor:pointer;padding:3px 0">
+    <span style="font-size:18px">📦</span><span class="bnav-lbl" style="font-size:9px;color:#5A6580;font-family:'DM Sans',sans-serif;font-weight:400">Batches</span><span class="bnav-dot" style="width:4px;height:4px;background:transparent;border-radius:50%;display:block"></span>
+  </button>
+  <button onclick="goTo('lectures')" class="bnav" data-page="lectures" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;cursor:pointer;padding:3px 0">
+    <span style="font-size:18px">🎬</span><span class="bnav-lbl" style="font-size:9px;color:#5A6580;font-family:'DM Sans',sans-serif;font-weight:400">Lectures</span><span class="bnav-dot" style="width:4px;height:4px;background:transparent;border-radius:50%;display:block"></span>
+  </button>
+  <button onclick="goTo('tests')" class="bnav" data-page="tests" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;cursor:pointer;padding:3px 0">
+    <span style="font-size:18px">📝</span><span class="bnav-lbl" style="font-size:9px;color:#5A6580;font-family:'DM Sans',sans-serif;font-weight:400">Tests</span><span class="bnav-dot" style="width:4px;height:4px;background:transparent;border-radius:50%;display:block"></span>
+  </button>
+  <button onclick="goTo('about')" class="bnav" data-page="about" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;cursor:pointer;padding:3px 0">
+    <span style="font-size:18px">ℹ️</span><span class="bnav-lbl" style="font-size:9px;color:#5A6580;font-family:'DM Sans',sans-serif;font-weight:400">About</span><span class="bnav-dot" style="width:4px;height:4px;background:transparent;border-radius:50%;display:block"></span>
+  </button>
+</div>
+
+<!-- OBI AI -->
+<div id="ai-panel" style="display:none;position:fixed;right:14px;bottom:72px;width:320px;height:480px;background:#131929;border-radius:18px;border:1px solid rgba(255,107,0,.3);flex-direction:column;z-index:998;box-shadow:0 20px 60px rgba(0,0,0,.7);animation:popIn .28s ease">
+  <div style="padding:12px 16px;border-bottom:1px solid #1A2440;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(255,107,0,.07),transparent);border-radius:18px 18px 0 0">
+    <div style="width:34px;height:34px;background:linear-gradient(135deg,#FF6B00,#E94560);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px">🤖</div>
+    <div>
+      <div style="font-family:Syne;font-weight:700;font-size:14px">Obi AI</div>
+      <div style="font-size:11px;color:#00D4AA;display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;background:#00D4AA;border-radius:50%;display:inline-block;animation:pulse 2s infinite"></span>Always online</div>
+    </div>
+    <button onclick="toggleAI()" style="margin-left:auto;background:none;border:none;color:#5A6580;cursor:pointer;font-size:18px;line-height:1">✕</button>
+  </div>
+  <div id="ai-msgs" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:11px"></div>
+  <div id="ai-chips" style="padding:0 12px 7px;display:flex;gap:5px;flex-wrap:wrap">
+    <button onclick="aiSend('Newton laws')" style="font-size:10px;padding:4px 8px;background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.2);border-radius:20px;color:#FF6B00;cursor:pointer;font-family:'DM Sans',sans-serif">Newton's laws</button>
+    <button onclick="aiSend('Integration tips')" style="font-size:10px;padding:4px 8px;background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.2);border-radius:20px;color:#FF6B00;cursor:pointer;font-family:'DM Sans',sans-serif">Integration</button>
+    <button onclick="aiSend('Study schedule')" style="font-size:10px;padding:4px 8px;background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.2);border-radius:20px;color:#FF6B00;cursor:pointer;font-family:'DM Sans',sans-serif">Study plan</button>
+    <button onclick="aiSend('Periodic table')" style="font-size:10px;padding:4px 8px;background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.2);border-radius:20px;color:#FF6B00;cursor:pointer;font-family:'DM Sans',sans-serif">Periodic table</button>
+  </div>
+  <div style="padding:10px 12px;border-top:1px solid #1A2440;display:flex;gap:7px">
+    <input class="inp" id="ai-inp" style="padding:9px 12px;border-radius:9px;font-size:13px" placeholder="Ask a doubt..." onkeydown="if(event.key==='Enter')aiSend()"/>
+    <button class="bp" onclick="aiSend()" style="padding:9px 13px;border-radius:9px;flex-shrink:0">➤</button>
+  </div>
+</div>
+
+<!-- AI FAB -->
+<button id="ai-fab" onclick="toggleAI()" style="position:fixed;bottom:78px;right:16px;width:50px;height:50px;background:linear-gradient(135deg,#FF6B00,#E94560);border-radius:50%;border:none;cursor:pointer;font-size:20px;box-shadow:0 4px 20px rgba(255,107,0,.55);z-index:99;display:flex;align-items:center;justify-content:center;animation:glow 3s infinite">🤖</button>
+
+<!-- AUTH MODAL -->
+<div id="auth-overlay" class="overlay hidden" onclick="closeAuthIfOutside(event)">
+  <div class="mbox" id="auth-box">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+      <div style="width:40px;height:40px;background:linear-gradient(135deg,#FF6B00,#FF9500);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px">🎓</div>
+      <div><div style="font-family:Syne;font-weight:800;font-size:17px">Eduobi</div><div style="font-size:11px;color:#5A6580">by Obi Enterprises</div></div>
+      <button onclick="closeAuth()" style="margin-left:auto;background:none;border:none;color:#5A6580;cursor:pointer;font-size:21px;line-height:1">✕</button>
+    </div>
+    <div style="display:flex;gap:4px;background:#0A0A14;border-radius:10px;padding:4px;margin-bottom:18px">
+      <button id="tab-login" class="tabbtn act" style="flex:1" onclick="switchTab('login')">🔐 Login</button>
+      <button id="tab-reg" class="tabbtn" style="flex:1" onclick="switchTab('register')">✨ Register</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <input class="inp" id="auth-name" placeholder="Full Name *" style="display:none"/>
+      <input class="inp" id="auth-email" type="email" placeholder="Email Address *"/>
+      <input class="inp" id="auth-phone" placeholder="Phone Number" style="display:none"/>
+      <select class="inp" id="auth-goal" style="display:none">
+        <option value="">Select your goal *</option>
+        <option value="jee">⚛️ JEE Main & Advanced</option>
+        <option value="neet">🧬 NEET UG</option>
+        <option value="12">📘 Class 12</option>
+        <option value="11">📗 Class 11</option>
+        <option value="cuet">📝 CUET</option>
+        <option value="foundation">🏗️ Foundation (8–10)</option>
+      </select>
+      <input class="inp" id="auth-pw" type="password" placeholder="Password *" onkeydown="if(event.key==='Enter')doAuth()"/>
+      <div id="auth-err" style="color:#E94560;font-size:13px;padding:8px 11px;background:rgba(233,69,96,.1);border-radius:8px;display:none"></div>
+      <button class="bp" id="auth-submit" onclick="doAuth()" style="width:100%;padding:13px;font-size:14px">Login to Eduobi →</button>
+      <div style="text-align:center;font-size:12px;color:#5A6580">
+        <span id="auth-switch-text">New to Eduobi? </span><span id="auth-switch-link" style="color:#FF6B00;cursor:pointer;font-weight:600" onclick="switchTab('register')">Register Free</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════╗
+// ║           EDUOBI — ADMIN CONTENT CONFIG                     ║
+// ║   Add your Batches and Lectures here easily!                ║
+// ╠══════════════════════════════════════════════════════════════╣
+// ║  HOW TO ADD A BATCH:                                        ║
+// ║  Copy one object from BATCHES array, paste below it,        ║
+// ║  give it a new id, change the details. Set live:true when   ║
+// ║  you want it visible. live:false = "Coming Soon" card.      ║
+// ║                                                             ║
+// ║  HOW TO ADD A LECTURE:                                      ║
+// ║  Copy one object from LECTURES array, paste below it,       ║
+// ║  fill in title, subject, duration, videoUrl (YouTube embed  ║
+// ║  or any URL), batchId (match the batch id above).           ║
+// ║  Set free:true for free preview, free:false for enrolled.   ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+// ─── CLASSES (Goal Categories) — edit name/icon/color freely ───
+var CLASSES=[
+  {id:"jee",name:"JEE Main & Advanced",icon:"⚛️",color:"#4A90E2"},
+  {id:"neet",name:"NEET UG",icon:"🧬",color:"#E94560"},
+  {id:"12",name:"Class 12",icon:"📘",color:"#FF6B00"},
+  {id:"11",name:"Class 11",icon:"📗",color:"#00D4AA"},
+  {id:"cuet",name:"CUET",icon:"📝",color:"#9B59B6"},
+  {id:"foundation",name:"Foundation (8–10)",icon:"🏗️",color:"#E67E22"},
+];
+
+// ─── BATCHES — set live:false for "Coming Soon", live:true to show ───
+// To add a batch: copy any object below, paste it, change id & details
+var BATCHES=[
+  {id:1,name:"Arjuna 2.0 — JEE 2026",cid:"jee",price:8999,orig:19999,rating:4.8,students:"—",inst:"Anmol Thakur",tag:"COMING SOON",color:"#FF6B00",icon:"🚀",desc:"Complete JEE prep — 500+ hrs, DPPs, mocks & live sessions.",subs:["Physics","Chemistry","Maths"],dur:"12 months",live:false},
+  {id:2,name:"Lakshya — NEET 2026",cid:"neet",price:7999,orig:17999,rating:4.9,students:"—",inst:"Anmol Thakur",tag:"COMING SOON",color:"#E94560",icon:"🎯",desc:"NCERT mastery, full mocks & biology deep dives for NEET.",subs:["Physics","Chemistry","Biology"],dur:"12 months",live:false},
+  {id:3,name:"Infinity+ Class 12 PCM",cid:"12",price:5999,orig:12999,rating:4.7,students:"—",inst:"Anmol Thakur",tag:"COMING SOON",color:"#4A90E2",icon:"⚡",desc:"Board + JEE combined. Smart study plans for Class 12.",subs:["Physics","Chemistry","Maths"],dur:"10 months",live:false},
+  {id:4,name:"Dropper Batch — JEE 2026",cid:"jee",price:9999,orig:22999,rating:4.8,students:"—",inst:"Anmol Thakur",tag:"COMING SOON",color:"#00D4AA",icon:"💪",desc:"Intensive revision for JEE droppers. Full syllabus + advanced.",subs:["Physics","Chemistry","Maths"],dur:"8 months",live:false},
+  {id:5,name:"Enthusia — Class 11 PCB",cid:"11",price:4999,orig:10999,rating:4.6,students:"—",inst:"Anmol Thakur",tag:"COMING SOON",color:"#9B59B6",icon:"🌟",desc:"Strong NEET foundation from Class 11. Concept-first approach.",subs:["Physics","Chemistry","Biology"],dur:"10 months",live:false},
+  {id:6,name:"CUET Master Batch",cid:"cuet",price:3999,orig:8999,rating:4.7,students:"—",inst:"Anmol Thakur",tag:"COMING SOON",color:"#E67E22",icon:"📚",desc:"Score 700+ in CUET. Proven strategy + 300+ practice sets.",subs:["Maths","English","GK"],dur:"6 months",live:false},
+  // ↓↓ ADD NEW BATCHES BELOW THIS LINE ↓↓
+  // Example (remove the // to activate):
+  // {id:7,name:"My New Batch",cid:"jee",price:4999,orig:9999,rating:5.0,students:"0",inst:"Your Name",tag:"NEW",color:"#FF6B00",icon:"🎓",desc:"Batch description here.",subs:["Physics","Chemistry","Maths"],dur:"6 months",live:true},
+];
+
+// ─── LECTURES — add your lectures here ───
+// To add a lecture: copy any object, paste it, change id & details
+// videoUrl: paste YouTube embed link or any video URL
+// batchId: must match a batch id from BATCHES above
+var LECTURES=[
+  // ↓↓ ADD YOUR LECTURES BELOW THIS LINE ↓↓
+  // Example (remove the // to activate):
+  // {id:1,batchId:1,title:"Motion in a Straight Line — Part 1",subject:"Physics",duration:"1h 23m",instructor:"Anmol Thakur",videoUrl:"https://www.youtube.com/embed/YOUR_VIDEO_ID",free:true,desc:"Kinematics basics with solved examples."},
+  // {id:2,batchId:1,title:"Newton's Laws of Motion",subject:"Physics",duration:"2h 05m",instructor:"Anmol Thakur",videoUrl:"https://www.youtube.com/embed/YOUR_VIDEO_ID",free:false,desc:"All three laws explained with JEE problems."},
+];
+
+var TESTS=[
+  {id:1,name:"JEE Main Full Mock — Jan 2025",type:"Full Test",dur:180,diff:"Hard",attempts:"2.3L"},
+  {id:2,name:"NEET Chapter Test — Genetics",type:"Chapter Test",dur:60,diff:"Medium",attempts:"98K"},
+  {id:3,name:"Physics Weekly Test #12",type:"Weekly",dur:45,diff:"Medium",attempts:"1.2L"},
+  {id:4,name:"Chemistry DPP — Organic",type:"DPP",dur:30,diff:"Easy",attempts:"1.8L"},
+  {id:5,name:"Maths Crash — Algebra",type:"Chapter Test",dur:50,diff:"Hard",attempts:"87K"},
+];
+
+var QS=[
+  {q:"A body moves with uniform velocity. Its acceleration is:",opts:["0 m/s²","1 m/s²","9.8 m/s²","Variable"],ans:0,sub:"Physics",exp:"Uniform velocity = no change in speed → acceleration = 0."},
+  {q:"Atomic number of Carbon is:",opts:["4","6","8","12"],ans:1,sub:"Chemistry",exp:"Carbon (C) has atomic number 6 — 6 protons in its nucleus."},
+  {q:"If f(x) = x², then f'(x) =",opts:["x","2x","x/2","2"],ans:1,sub:"Maths",exp:"Power rule: d/dx(xⁿ) = n·xⁿ⁻¹ → d/dx(x²) = 2x."},
+  {q:"Powerhouse of the cell is:",opts:["Ribosome","Nucleus","Mitochondria","Golgi body"],ans:2,sub:"Biology",exp:"Mitochondria produce ATP via cellular respiration."},
+  {q:"SI unit of electric charge:",opts:["Ampere","Volt","Coulomb","Ohm"],ans:2,sub:"Physics",exp:"Coulomb (C) — charge of ~6.24×10¹⁸ electrons = 1 C."},
+];
+
+// ═══════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════
+var currentUser=null;
+var currentPage='home';
+var authTab='login';
+var aiOpen=false;
+var testState={active:null,phase:'list',ans:{},flagged:{},timer:null,timeLeft:0};
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+function goTo(page){
+  document.querySelectorAll('[id^="page-"]').forEach(function(el){el.classList.add('hidden')});
+  var el=document.getElementById('page-'+page);
+  if(el){el.classList.remove('hidden');el.classList.add('fu');}
+  // update top nav
+  document.querySelectorAll('.navbtn').forEach(function(b){b.classList.remove('act')});
+  var nb=document.querySelector('.navbtn[data-page="'+page+'"]');
+  if(nb)nb.classList.add('act');
+  // update bottom nav
+  document.querySelectorAll('.bnav').forEach(function(b){
+    var lbl=b.querySelector('.bnav-lbl');
+    var dot=b.querySelector('.bnav-dot');
+    if(b.dataset.page===page){lbl.style.color='#FF6B00';lbl.style.fontWeight='700';dot.style.background='#FF6B00';}
+    else{lbl.style.color='#5A6580';lbl.style.fontWeight='400';dot.style.background='transparent';}
+  });
+  currentPage=page;
+  window.scrollTo(0,0);
+  // page-specific updates
+  if(page==='lectures')updateLecturePage();
+  if(page==='tests')renderTestsList();
+  if(page==='dashboard'){if(currentUser)renderDashboard();else goTo('home');}
+}
+
+// ═══════════════════════════════════════════
+// INIT RENDERS
+// ═══════════════════════════════════════════
+function init(){
+  renderGoals();
+  renderHomeBatches();
+  renderAllBatches('all');
+  renderTestsList();
+  addAIMsg('ai',AI_KB.default);
+}
+
+function renderGoals(){
+  var g=document.getElementById('goals-grid');
+  g.innerHTML=CLASSES.map(function(c){
+    return '<div class="card-h" onclick="goTo(\'batches\')" style="padding:18px 13px;text-align:center"><div style="font-size:26px;margin-bottom:8px">'+c.icon+'</div><div style="font-weight:600;font-size:12.5px;line-height:1.3;margin-bottom:4px">'+c.name+'</div><div style="width:24px;height:3px;background:'+c.color+';border-radius:2px;margin:8px auto 0"></div></div>';
+  }).join('');
+}
+
+function batchCard(b,enroll){
+  var disc=Math.round((1-b.price/b.orig)*100);
+  var subBadges=b.subs.map(function(s){return '<span class="badge bb" style="font-size:10px">'+s+'</span>';}).join('');
+  return '<div class="card" style="overflow:hidden"><div style="height:6px;background:linear-gradient(90deg,'+b.color+','+b.color+'44)"></div><div style="padding:17px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px"><span style="font-size:30px">'+b.icon+'</span>'+(b.tag?'<span class="badge bo">'+b.tag+'</span>':'')+'</div><h3 style="font-family:Syne;font-weight:700;font-size:14px;margin-bottom:5px;line-height:1.3">'+b.name+'</h3><p style="color:#8892A4;font-size:12px;line-height:1.55;margin-bottom:10px">'+b.desc+'</p><div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">'+subBadges+'<span class="badge bg3" style="font-size:10px">📅 '+b.dur+'</span></div><div style="font-size:11.5px;color:#8892A4;margin-bottom:11px">👨‍🏫 '+b.inst+' · ⭐ '+b.rating+' · 👥 '+b.students+'</div><div style="display:flex;align-items:center;gap:7px;margin-bottom:12px"><span style="font-family:Syne;font-weight:800;font-size:19px">₹'+b.price.toLocaleString()+'</span><span style="text-decoration:line-through;color:#5A6580;font-size:12px">₹'+b.orig.toLocaleString()+'</span><span class="badge bg3">'+disc+'% OFF</span></div><button class="bp" onclick="'+enroll+'" style="width:100%;padding:10px">Enroll Now</button></div></div>';
+}
+
+function batchCard(b){
+  var disc=Math.round((1-b.price/b.orig)*100);
+  var subBadges=b.subs.map(function(s){return '<span class="badge bb" style="font-size:10px">'+s+'</span>';}).join('');
+
+  if(!b.live){
+    // COMING SOON card
+    return '<div class="card" style="overflow:hidden;position:relative"><div style="height:6px;background:linear-gradient(90deg,'+b.color+','+b.color+'44)"></div><div style="padding:17px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px"><span style="font-size:30px">'+b.icon+'</span><span class="badge bo">🕐 COMING SOON</span></div><h3 style="font-family:Syne;font-weight:700;font-size:14px;margin-bottom:5px;line-height:1.3">'+b.name+'</h3><p style="color:#8892A4;font-size:12px;line-height:1.55;margin-bottom:10px">'+b.desc+'</p><div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">'+subBadges+'<span class="badge bg3" style="font-size:10px">📅 '+b.dur+'</span></div><div style="font-size:11.5px;color:#8892A4;margin-bottom:11px">👨‍🏫 '+b.inst+'</div><div style="display:flex;gap:10px;align-items:center;padding:12px 14px;background:rgba(255,107,0,.06);border-radius:10px;border:1px dashed rgba(255,107,0,.25)"><div style="font-size:22px">🔔</div><div><div style="font-size:12.5px;font-weight:600;color:#FF6B00">Launching Soon!</div><div style="font-size:11px;color:#8892A4;margin-top:2px">Register to get notified when this batch goes live.</div></div></div><button class="bp" onclick="notifyMe('+b.id+')" style="width:100%;padding:10px;margin-top:12px;background:transparent;color:#FF6B00;border:1.5px solid #FF6B00">🔔 Notify Me</button></div></div>';
+  }
+
+  // LIVE card
+  return '<div class="card" style="overflow:hidden"><div style="height:6px;background:linear-gradient(90deg,'+b.color+','+b.color+'44)"></div><div style="padding:17px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px"><span style="font-size:30px">'+b.icon+'</span>'+(b.tag?'<span class="badge bo">'+b.tag+'</span>':'')+'</div><h3 style="font-family:Syne;font-weight:700;font-size:14px;margin-bottom:5px;line-height:1.3">'+b.name+'</h3><p style="color:#8892A4;font-size:12px;line-height:1.55;margin-bottom:10px">'+b.desc+'</p><div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">'+subBadges+'<span class="badge bg3" style="font-size:10px">📅 '+b.dur+'</span></div><div style="font-size:11.5px;color:#8892A4;margin-bottom:11px">👨‍🏫 '+b.inst+' · ⭐ '+b.rating+' · 👥 '+b.students+'</div><div style="display:flex;align-items:center;gap:7px;margin-bottom:12px"><span style="font-family:Syne;font-weight:800;font-size:19px">₹'+b.price.toLocaleString()+'</span><span style="text-decoration:line-through;color:#5A6580;font-size:12px">₹'+b.orig.toLocaleString()+'</span><span class="badge bg3">'+disc+'% OFF</span></div><button class="bp" onclick="handleEnroll('+b.id+')" style="width:100%;padding:10px">Enroll Now</button></div></div>';
+}
+
+function filterBatches(f,btn){
+  document.querySelectorAll('#batch-filters .tabbtn').forEach(function(b){b.classList.remove('act')});
+  btn.classList.add('act');
+  renderAllBatches(f);
+}
+
+function handleEnroll(id){
+  if(!currentUser){openAuth();return;}
+  showToast('Enrolled! Welcome aboard 🎉');
+}
+
+function notifyMe(id){
+  if(!currentUser){openAuth();return;}
+  showToast('You\'ll be notified when this batch launches! 🔔');
+}
+
+function heroCta(){
+  if(currentUser)goTo('batches');else openAuth();
+}
+
+// ═══════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════
+function openAuth(){
+  document.getElementById('auth-overlay').classList.remove('hidden');
+  switchTab('login');
+}
+function closeAuth(){document.getElementById('auth-overlay').classList.add('hidden');}
+function closeAuthIfOutside(e){if(e.target===document.getElementById('auth-overlay'))closeAuth();}
+
+function switchTab(tab){
+  authTab=tab;
+  var isReg=tab==='register';
+  document.getElementById('tab-login').classList.toggle('act',!isReg);
+  document.getElementById('tab-reg').classList.toggle('act',isReg);
+  document.getElementById('auth-name').style.display=isReg?'block':'none';
+  document.getElementById('auth-phone').style.display=isReg?'block':'none';
+  document.getElementById('auth-goal').style.display=isReg?'block':'none';
+  document.getElementById('auth-submit').textContent=isReg?'Create Free Account →':'Login to Eduobi →';
+  document.getElementById('auth-switch-text').textContent=isReg?'Have an account? ':'New to Eduobi? ';
+  document.getElementById('auth-switch-link').textContent=isReg?'Login here':'Register Free';
+  document.getElementById('auth-switch-link').onclick=function(){switchTab(isReg?'login':'register');};
+  hideAuthErr();
+}
+
+function showAuthErr(msg){var e=document.getElementById('auth-err');e.textContent='⚠️ '+msg;e.style.display='block';}
+function hideAuthErr(){document.getElementById('auth-err').style.display='none';}
+
+function doAuth(){
+  var email=document.getElementById('auth-email').value.trim();
+  var pw=document.getElementById('auth-pw').value.trim();
+  var name=document.getElementById('auth-name').value.trim();
+  if(!email||!pw){showAuthErr('Please fill all required fields.');return;}
+  if(authTab==='register'&&!name){showAuthErr('Full name is required.');return;}
+  var btn=document.getElementById('auth-submit');
+  btn.textContent='⏳ Please wait...';btn.disabled=true;
+  setTimeout(function(){
+    btn.disabled=false;
+    currentUser={name:name||email.split('@')[0],email:email,goal:'jee'};
+    closeAuth();
+    updateUserUI();
+    goTo('dashboard');
+    showToast('Welcome, '+currentUser.name+'! 🎉');
+  },900);
+}
+
+function doLogout(){
+  currentUser=null;
+  updateUserUI();
+  goTo('home');
+  showToast('Logged out successfully.');
+}
+
+function updateUserUI(){
+  var logged=!!currentUser;
+  document.getElementById('loginbtn').style.display=logged?'none':'';
+  document.getElementById('userbtn').style.display=logged?'flex':'none';
+  if(logged){document.getElementById('useravatar').textContent=currentUser.name[0].toUpperCase();}
+  document.getElementById('dashnavbtn').classList.toggle('hidden',!logged);
+  // hero CTA
+  var cta=document.getElementById('hero-cta');
+  if(cta)cta.textContent=logged?'Explore Batches →':'Start Learning Free →';
+  // lectures
+  updateLecturePage();
+  // tests hint
+  var hint=document.getElementById('tests-login-hint');
+  if(hint)hint.style.display=logged?'none':'inline';
+}
+
+// ═══════════════════════════════════════════
+// LECTURES
+// ═══════════════════════════════════════════
+function updateLecturePage(){
+  var banner=document.getElementById('lec-login-banner');
+  var enrollBtn=document.getElementById('lec-enroll-btn');
+  if(banner){banner.classList.toggle('hidden',!!currentUser);}
+  if(enrollBtn){
+    if(currentUser){enrollBtn.textContent='Browse Batches';enrollBtn.onclick=function(){goTo('batches');};}
+    else{enrollBtn.textContent='Login to Enroll';enrollBtn.onclick=openAuth;}
+  }
+  renderLectures('All');
+}
+
+function renderLectures(sub){
+  var container=document.getElementById('lec-content');
+  if(!container)return;
+
+  // Update tab buttons
+  document.querySelectorAll('.lec-tab').forEach(function(b){
+    b.classList.toggle('act',b.dataset.sub===sub);
+  });
+
+  var filtered=sub==='All'?LECTURES:LECTURES.filter(function(l){return l.subject===sub;});
+
+  if(LECTURES.length===0){
+    // Empty state
+    container.innerHTML=
+      '<div style="text-align:center;padding:52px 16px">'+
+      '<div style="font-size:64px;margin-bottom:16px">🎬</div>'+
+      '<h3 style="font-family:Syne;font-weight:700;font-size:20px;margin-bottom:9px">Lectures Coming Soon!</h3>'+
+      '<p style="color:#8892A4;line-height:1.85;max-width:400px;margin:0 auto 20px;font-size:13.5px">Our educators are preparing world-class video content.<br>Content will appear here once your batch is activated.<br><br><strong style="color:#FF6B00">Enroll in a batch</strong> to get notified instantly.</p>'+
+      '<div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap">'+
+      '<button class="bp" id="lec-enroll-btn" onclick="openAuth()">Login to Enroll</button>'+
+      '<button class="bg2" onclick="toggleAI()">Ask Obi AI 🤖</button>'+
+      '</div></div>';
+    updateLectureEnrollBtn();
+    return;
+  }
+
+  if(filtered.length===0){
+    container.innerHTML='<p style="color:#5A6580;text-align:center;padding:40px">No lectures found for this subject.</p>';
+    return;
+  }
+
+  container.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">'+
+    filtered.map(function(l){
+      var subColor=l.subject==='Physics'?'#4A90E2':l.subject==='Chemistry'?'#00D4AA':l.subject==='Maths'?'#FF6B00':'#E94560';
+      var canWatch=l.free||!!currentUser;
+      return '<div class="card" style="overflow:hidden">'+
+        '<div style="height:5px;background:'+subColor+'"></div>'+
+        '<div style="padding:15px">'+
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">'+
+        '<span class="badge bb" style="font-size:10px">'+l.subject+'</span>'+
+        (l.free?'<span class="badge bg3" style="font-size:10px">FREE</span>':'<span class="badge bo" style="font-size:10px">ENROLLED</span>')+
+        '</div>'+
+        '<div style="font-weight:600;font-size:13.5px;margin-bottom:5px;line-height:1.3">'+l.title+'</div>'+
+        '<div style="color:#8892A4;font-size:12px;margin-bottom:11px">👨‍🏫 '+l.instructor+' · ⏱ '+l.duration+'</div>'+
+        '<button class="bp" onclick="watchLecture(\''+l.videoUrl+'\',\''+l.title+'\','+l.free+')" style="width:100%;padding:9px;font-size:13px">'+
+        (canWatch?'▶ Watch Now':'🔐 Login to Watch')+
+        '</button>'+
+        '</div></div>';
+    }).join('')+
+  '</div>';
+}
+
+function updateLectureEnrollBtn(){
+  var btn=document.getElementById('lec-enroll-btn');
+  if(!btn)return;
+  if(currentUser){btn.textContent='Browse Batches';btn.onclick=function(){goTo('batches');};}
+  else{btn.textContent='Login to Enroll';btn.onclick=openAuth;}
+}
+
+function watchLecture(url,title,isFree){
+  if(!isFree&&!currentUser){openAuth();return;}
+  if(!url||url===''){showToast('Video URL not set yet. Coming soon!');return;}
+  // Open video in a simple modal
+  var overlay=document.createElement('div');
+  overlay.className='overlay';
+  overlay.style.zIndex='3000';
+  overlay.innerHTML=
+    '<div style="background:#131929;border-radius:18px;border:1px solid #243154;padding:20px;width:95%;max-width:700px;animation:popIn .28s ease">'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">'+
+    '<div style="font-family:Syne;font-weight:700;font-size:15px;color:#E8E8F0">'+title+'</div>'+
+    '<button onclick="this.closest(\'.overlay\').remove()" style="background:none;border:none;color:#5A6580;cursor:pointer;font-size:20px">✕</button>'+
+    '</div>'+
+    '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#0A0A14">'+
+    '<iframe src="'+url+'" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:12px" allowfullscreen></iframe>'+
+    '</div></div>';
+  overlay.onclick=function(e){if(e.target===overlay)overlay.remove();};
+  document.body.appendChild(overlay);
+}
+
+// ═══════════════════════════════════════════
+// TESTS
+// ═══════════════════════════════════════════
+function renderTestsList(){
+  var g=document.getElementById('tests-grid');
+  if(!g)return;
+  g.innerHTML=TESTS.map(function(t){
+    var typeCls=t.type==='Full Test'?'bo':t.type==='DPP'?'bg3':'bb';
+    var diffCls=t.diff==='Hard'?'br':t.diff==='Medium'?'bo':'bg3';
+    var btnLabel=currentUser?'Start Test →':'🔐 Login to Attempt';
+    return '<div class="card" style="padding:17px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:170px"><div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap"><span class="badge '+typeCls+'">'+t.type+'</span><span class="badge '+diffCls+'">'+t.diff+'</span></div><div style="font-weight:600;font-size:14px;margin-bottom:4px">'+t.name+'</div><div style="color:#8892A4;font-size:11.5px">⏱ '+t.dur+' min · 👥 '+t.attempts+' attempted</div></div><button class="bp" onclick="startTest('+t.id+')" style="padding:10px 16px;font-size:13px;white-space:nowrap">'+btnLabel+'</button></div>';
+  }).join('');
+}
+
+function startTest(id){
+  if(!currentUser){openAuth();return;}
+  var t=TESTS.find(function(x){return x.id===id;});
+  if(!t)return;
+  testState={active:t,phase:'running',ans:{},flagged:{},timer:null,timeLeft:t.dur*60};
+  renderTestRunner();
+  testState.timer=setInterval(function(){
+    testState.timeLeft--;
+    if(testState.timeLeft<=0){clearInterval(testState.timer);submitTest();}
+    else updateTimerDisplay();
+  },1000);
+}
+
+function updateTimerDisplay(){
+  var el=document.getElementById('test-timer');
+  if(!el)return;
+  var m=Math.floor(testState.timeLeft/60),s=testState.timeLeft%60;
+  el.textContent='⏱ '+pad(m)+':'+pad(s);
+  el.style.color=testState.timeLeft<60?'#E94560':'#FF6B00';
+  el.style.borderColor=testState.timeLeft<60?'#E94560':'#FF6B00';
+}
+
+function pad(n){return n<10?'0'+n:n;}
+
+function renderTestRunner(){
+  document.getElementById('tests-list').classList.add('hidden');
+  document.getElementById('test-result').classList.add('hidden');
+  var r=document.getElementById('test-runner');
+  r.classList.remove('hidden');
+  var m=Math.floor(testState.timeLeft/60),s=testState.timeLeft%60;
+
+  var qHTML=QS.map(function(q,qi){
+    var subCls=q.sub==='Physics'?'bb':q.sub==='Chemistry'?'bg3':q.sub==='Maths'?'bo':'bgold';
+    var opts=q.opts.map(function(opt,oi){
+      return '<div id="opt-'+qi+'-'+oi+'" onclick="selectAns('+qi+','+oi+')" style="padding:10px 14px;border-radius:9px;border:1.5px solid #243154;background:rgba(255,255,255,.02);cursor:pointer;font-size:13.5px;display:flex;gap:9px;align-items:center;transition:all .15s;margin-bottom:7px"><span style="color:#FF6B00;font-weight:700;min-width:16px">'+['A','B','C','D'][oi]+'.</span>'+opt+'</div>';
+    }).join('');
+    return '<div id="qblock-'+qi+'" style="background:#131929;border-radius:13px;border:1.5px solid #1A2440;padding:18px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="display:flex;gap:8px;align-items:center"><div style="background:#FF6B00;color:#fff;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Syne;font-weight:700;font-size:11.5px">Q'+(qi+1)+'</div><span class="badge '+subCls+'">'+q.sub+'</span></div><button id="flag-'+qi+'" onclick="toggleFlag('+qi+')" style="background:rgba(255,255,255,.04);border:1px solid #243154;color:#5A6580;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:11.5px;font-family:\'DM Sans\',sans-serif">🚩 Flag</button></div><div style="font-weight:500;font-size:14px;margin-bottom:13px;line-height:1.5">'+q.q+'</div>'+opts+'</div>';
+  }).join('');
+
+  var navBtns=QS.map(function(_,qi){
+    return '<div id="nav-'+qi+'" onclick="scrollToQ('+qi+')" style="width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;cursor:pointer;background:#1A2440;color:#8892A4;border:1.5px solid #243154">'+(qi+1)+'</div>';
+  }).join('');
+
+  r.innerHTML=
+    '<div style="background:rgba(19,25,41,.95);border:1px solid #1A2440;border-radius:12px;padding:13px 16px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;position:sticky;top:58px;z-index:50;backdrop-filter:blur(10px)">'+
+      '<div><div style="font-family:Syne;font-weight:700;font-size:14.5px">'+testState.active.name+'</div><div id="test-answered-lbl" style="color:#8892A4;font-size:11.5px;margin-top:2px">✅ 0 answered · ⬜ '+QS.length+' left</div></div>'+
+      '<div style="display:flex;gap:10px;align-items:center"><div id="test-timer" style="background:rgba(255,107,0,.12);border:1.5px solid #FF6B00;padding:7px 13px;border-radius:9px;font-family:Syne;font-weight:800;font-size:18px;color:#FF6B00">⏱ '+pad(m)+':'+pad(s)+'</div>'+
+      '<button class="bp" onclick="submitTest()" style="padding:8px 15px;font-size:13px">Submit</button></div>'+
+    '</div>'+
+    '<div style="background:#131929;border:1px solid #1A2440;border-radius:12px;padding:13px;margin-bottom:15px"><div style="font-size:11.5px;color:#8892A4;margin-bottom:8px">Question Navigator:</div><div style="display:flex;flex-wrap:wrap;gap:5px" id="q-nav">'+navBtns+'</div></div>'+
+    qHTML+
+    '<div style="display:flex;gap:10px;margin-top:6px"><button class="bp" onclick="submitTest()" style="flex:1;padding:13px">Submit Test →</button><button class="bg2" onclick="exitTest()">Exit</button></div>';
+}
+
+function selectAns(qi,oi){
+  testState.ans[qi]=oi;
+  // update option styles
+  for(var i=0;i<4;i++){
+    var el=document.getElementById('opt-'+qi+'-'+i);
+    if(!el)continue;
+    el.style.borderColor=i===oi?'#FF6B00':'#243154';
+    el.style.background=i===oi?'rgba(255,107,0,.1)':'rgba(255,255,255,.02)';
+  }
+  // update navigator
+  var nav=document.getElementById('nav-'+qi);
+  if(nav){nav.style.background='rgba(0,212,170,.2)';nav.style.color='#00D4AA';nav.style.borderColor='#00D4AA';}
+  // update answered label
+  var cnt=Object.keys(testState.ans).length;
+  var lbl=document.getElementById('test-answered-lbl');
+  if(lbl)lbl.textContent='✅ '+cnt+' answered · ⬜ '+(QS.length-cnt)+' left';
+}
+
+function toggleFlag(qi){
+  testState.flagged[qi]=!testState.flagged[qi];
+  var btn=document.getElementById('flag-'+qi);
+  var nav=document.getElementById('nav-'+qi);
+  if(testState.flagged[qi]){
+    if(btn){btn.style.background='rgba(233,69,96,.2)';btn.style.borderColor='#E94560';btn.style.color='#E94560';btn.textContent='🚩 Flagged';}
+    if(nav&&testState.ans[qi]===undefined){nav.style.background='rgba(233,69,96,.3)';nav.style.color='#E94560';nav.style.borderColor='#E94560';}
+  } else {
+    if(btn){btn.style.background='rgba(255,255,255,.04)';btn.style.borderColor='#243154';btn.style.color='#5A6580';btn.textContent='🚩 Flag';}
+    if(nav&&testState.ans[qi]===undefined){nav.style.background='#1A2440';nav.style.color='#8892A4';nav.style.borderColor='#243154';}
+  }
+}
+
+function scrollToQ(qi){
+  var el=document.getElementById('qblock-'+qi);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function submitTest(){
+  if(testState.timer)clearInterval(testState.timer);
+  testState.phase='done';
+  document.getElementById('test-runner').classList.add('hidden');
+  renderTestResult();
+}
+
+function exitTest(){
+  if(testState.timer)clearInterval(testState.timer);
+  testState.phase='list';
+  document.getElementById('test-runner').classList.add('hidden');
+  document.getElementById('tests-list').classList.remove('hidden');
+  renderTestsList();
+}
+
+function renderTestResult(){
+  var score=QS.filter(function(q,i){return testState.ans[i]===q.ans;}).length;
+  var wrong=Object.keys(testState.ans).length-score;
+  var skip=QS.length-Object.keys(testState.ans).length;
+  var pct=Math.round((score/QS.length)*100);
+  var emoji=pct>=70?'🏆':pct>=50?'👍':'💪';
+  var pctColor=pct>=70?'#00D4AA':pct>=50?'#FF6B00':'#E94560';
+
+  var review=QS.map(function(q,qi){
+    var ua=testState.ans[qi];var ok=ua===q.ans;var att=ua!==undefined;
+    var bc=!att?'#5A6580':ok?'#00D4AA':'#E94560';
+    var uans=att?('<div style="font-size:12.5px;color:'+(ok?'#00D4AA':'#E94560')+';margin-bottom:4px">Your answer: <strong>'+q.opts[ua]+'</strong> '+(ok?'✅':'❌')+'</div>'):('<div style="font-size:12.5px;color:#5A6580;margin-bottom:4px">Skipped ⏭</div>');
+    var correct=!ok?('<div style="font-size:12.5px;color:#00D4AA">Correct: <strong>'+q.opts[q.ans]+'</strong></div>'):'';
+    return '<div style="background:#131929;border-radius:12px;border-left:4px solid '+bc+';border:1px solid #1A2440;border-left:4px solid '+bc+';padding:15px;margin-bottom:11px"><div style="font-size:13.5px;font-weight:500;margin-bottom:7px"><strong>Q'+(qi+1)+'.</strong> '+q.q+'</div>'+uans+correct+'<div style="font-size:12px;color:#8892A4;margin-top:7px;padding:7px 10px;background:rgba(255,255,255,.03);border-radius:7px;line-height:1.5">💡 '+q.exp+'</div></div>';
+  }).join('');
+
+  var r=document.getElementById('test-result');
+  r.classList.remove('hidden');
+  r.innerHTML=
+    '<div style="text-align:center;margin-bottom:24px">'+
+      '<div style="font-size:64px;margin-bottom:10px">'+emoji+'</div>'+
+      '<h2 style="font-family:Syne;font-weight:800;font-size:26px;margin-bottom:7px">Test Completed!</h2>'+
+      '<div style="font-family:Syne;font-weight:800;font-size:52px;color:'+pctColor+'">'+pct+'%</div>'+
+      '<div style="color:#8892A4;margin-top:4px;font-size:13px">'+score+'/'+QS.length+' correct · '+testState.active.name+'</div>'+
+    '</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:24px">'+
+      '<div class="card" style="padding:14px 9px;text-align:center"><div style="font-size:20px;margin-bottom:4px">✅</div><div style="font-family:Syne;font-weight:800;font-size:19px;color:#00D4AA">'+score+'</div><div style="color:#8892A4;font-size:11px">Correct</div></div>'+
+      '<div class="card" style="padding:14px 9px;text-align:center"><div style="font-size:20px;margin-bottom:4px">❌</div><div style="font-family:Syne;font-weight:800;font-size:19px;color:#E94560">'+wrong+'</div><div style="color:#8892A4;font-size:11px">Wrong</div></div>'+
+      '<div class="card" style="padding:14px 9px;text-align:center"><div style="font-size:20px;margin-bottom:4px">⏭</div><div style="font-family:Syne;font-weight:800;font-size:19px;color:#8892A4">'+skip+'</div><div style="color:#8892A4;font-size:11px">Skipped</div></div>'+
+      '<div class="card" style="padding:14px 9px;text-align:center"><div style="font-size:20px;margin-bottom:4px">📊</div><div style="font-family:Syne;font-weight:800;font-size:19px;color:#FF6B00">'+pct+'%</div><div style="color:#8892A4;font-size:11px">Score</div></div>'+
+    '</div>'+
+    '<h3 style="font-family:Syne;font-weight:700;font-size:16px;margin-bottom:13px">📋 Answer Review</h3>'+
+    review+
+    '<div style="display:flex;gap:10px;margin-top:6px">'+
+      '<button class="bp" onclick="exitTest()" style="flex:1;padding:13px">Back to Tests</button>'+
+      '<button class="bg2" onclick="retryTest()">🔄 Retry</button>'+
+    '</div>';
+}
+
+function retryTest(){
+  var t=testState.active;
+  document.getElementById('test-result').classList.add('hidden');
+  startTest(t.id);
+}
+
+// ═══════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════
+function renderDashboard(){
+  if(!currentUser)return;
+  var prog={1:42,2:18};
+  var enrolled=BATCHES.slice(0,2);
+  var batchRows=enrolled.map(function(b){
+    var p=prog[b.id]||0;
+    return '<div class="card" style="padding:17px 18px;margin-bottom:11px"><div style="display:flex;gap:13px;align-items:center;flex-wrap:wrap"><div style="font-size:30px">'+b.icon+'</div><div style="flex:1;min-width:160px"><div style="font-weight:600;font-size:13.5px;margin-bottom:3px">'+b.name+'</div><div style="color:#8892A4;font-size:12px;margin-bottom:8px">👨‍🏫 '+b.inst+'</div><div style="display:flex;gap:8px;align-items:center"><div class="pbar" style="flex:1"><div class="pfill" style="width:'+p+'%"></div></div><span style="font-size:12px;color:#FF6B00;font-weight:600;min-width:30px">'+p+'%</span></div></div><button class="bg2" onclick="goTo(\'lectures\')" style="font-size:12px;padding:7px 12px">Continue →</button></div></div>';
+  }).join('');
+
+  var lbData=[['Rahul M.','JEE',980,'🥇'],['Priya K.','NEET',945,'🥈'],['Arjun S.','JEE',912,'🥉'],['Sneha T.','Class 12',878,'4️⃣'],[currentUser.name+' (You)','—',420,'—']];
+  var lbRows=lbData.map(function(row,i){
+    var isMe=i===4;
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 13px;border-radius:9px;background:'+(isMe?'rgba(255,107,0,.05)':'transparent')+'"><div style="font-size:16px;min-width:24px">'+row[3]+'</div><div style="flex:1"><div style="font-weight:600;font-size:13px;color:'+(isMe?'#FF6B00':'#E8E8F0')+'">'+row[0]+'</div><div style="font-size:11px;color:#5A6580">'+row[1]+'</div></div><div style="font-family:Syne;font-weight:700;font-size:14px;color:'+(i===0?'#FFD700':'#8892A4')+'">'+row[2]+' pts</div></div>';
+  }).join('');
+
+  document.getElementById('dash-content').innerHTML=
+    '<div style="background:linear-gradient(135deg,#131929,#1A2440);border:1px solid rgba(255,107,0,.15);border-radius:16px;padding:22px;margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">'+
+      '<div style="width:52px;height:52px;background:linear-gradient(135deg,#FF6B00,#FF9500);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;flex-shrink:0">'+currentUser.name[0].toUpperCase()+'</div>'+
+      '<div style="flex:1"><div style="color:#8892A4;font-size:12px">Welcome back! 👋</div><div style="font-family:Syne;font-weight:800;font-size:20px">'+currentUser.name+'</div><div style="color:#5A6580;font-size:12px">'+currentUser.email+'</div></div>'+
+      '<div style="text-align:right"><span class="badge bgold" style="animation:glow 2s infinite;font-size:12px;padding:5px 12px">🔥 7-Day Streak</span></div>'+
+    '</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:11px;margin-bottom:22px">'+
+      '<div class="card" style="padding:16px"><div style="font-size:20px;margin-bottom:7px">📺</div><div style="font-family:Syne;font-weight:800;font-size:17px;margin-bottom:2px">0</div><div style="color:#5A6580;font-size:11.5px">Lectures Watched</div></div>'+
+      '<div class="card" style="padding:16px"><div style="font-size:20px;margin-bottom:7px">⏱</div><div style="font-family:Syne;font-weight:800;font-size:17px;margin-bottom:2px">0</div><div style="color:#5A6580;font-size:11.5px">Hrs Studied</div></div>'+
+      '<div class="card" style="padding:16px"><div style="font-size:20px;margin-bottom:7px">📝</div><div style="font-family:Syne;font-weight:800;font-size:17px;margin-bottom:2px">0</div><div style="color:#5A6580;font-size:11.5px">Tests Taken</div></div>'+
+      '<div class="card" style="padding:16px"><div style="font-size:20px;margin-bottom:7px">🏆</div><div style="font-family:Syne;font-weight:800;font-size:17px;margin-bottom:2px">—</div><div style="color:#5A6580;font-size:11.5px">Avg Score</div></div>'+
+    '</div>'+
+    '<h3 style="font-family:Syne;font-weight:700;font-size:18px;margin-bottom:13px">📦 Enrolled Batches</h3>'+
+    batchRows+
+    '<h3 style="font-family:Syne;font-weight:700;font-size:18px;margin-bottom:13px;margin-top:10px">⚡ Quick Access</h3>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px">'+
+      '<div class="card-h" onclick="goTo(\'tests\')" style="padding:15px 10px;text-align:center"><div style="font-size:22px;margin-bottom:6px">📝</div><div style="font-size:11.5px;font-weight:600">Attempt Test</div></div>'+
+      '<div class="card-h" onclick="goTo(\'lectures\')" style="padding:15px 10px;text-align:center"><div style="font-size:22px;margin-bottom:6px">🎬</div><div style="font-size:11.5px;font-weight:600">Lectures</div></div>'+
+      '<div class="card-h" onclick="goTo(\'batches\')" style="padding:15px 10px;text-align:center"><div style="font-size:22px;margin-bottom:6px">📦</div><div style="font-size:11.5px;font-weight:600">Batches</div></div>'+
+      '<div class="card-h" onclick="toggleAI()" style="padding:15px 10px;text-align:center"><div style="font-size:22px;margin-bottom:6px">🤖</div><div style="font-size:11.5px;font-weight:600">Obi AI</div></div>'+
+    '</div>'+
+    '<h3 style="font-family:Syne;font-weight:700;font-size:18px;margin-bottom:13px">🏅 Weekly Leaderboard</h3>'+
+    '<div class="card" style="padding:12px 16px">'+lbRows+'</div>';
+}
+
+// ═══════════════════════════════════════════
+// OBI AI — INTELLIGENT DOUBT SOLVER
+// ═══════════════════════════════════════════
+var AI_KB={
+  default:'I\'m <strong>Obi AI</strong> 🤖 — your 24/7 personal doubt solver from <strong>Eduobi</strong>!<br><br>I can help you with:<br>• ⚛️ <strong>Physics</strong> — Mechanics, Electricity, Waves, Optics, Modern Physics<br>• 🧪 <strong>Chemistry</strong> — Organic, Inorganic, Physical Chemistry<br>• 📐 <strong>Maths</strong> — Calculus, Algebra, Trigonometry, Coordinate Geometry<br>• 🧬 <strong>Biology</strong> — Cell, Genetics, Human Physiology, Ecology<br>• 📅 <strong>Study plans</strong> & exam strategy<br><br>Just ask me anything! 🚀',
+
+  // ── PHYSICS ──
+  newton:'<strong>Newton\'s Laws of Motion</strong> ⚛️<br><br><strong>1st Law (Inertia):</strong> A body continues in rest or uniform motion unless acted upon by an external force.<br><br><strong>2nd Law (F = ma):</strong> Net force = mass × acceleration. Direction of force = direction of acceleration.<br><br><strong>3rd Law:</strong> For every action, there is an equal and opposite reaction. Forces act on DIFFERENT bodies.<br><br>💡 <strong>JEE Tip:</strong> In free body diagrams, always isolate each object and apply F=ma separately. Watch for pseudo forces in non-inertial frames!',
+
+  kinematics:'<strong>Kinematics — Equations of Motion</strong> 🏃<br><br><strong>4 Golden Equations (uniform acceleration):</strong><br>• v = u + at<br>• s = ut + ½at²<br>• v² = u² + 2as<br>• s = (u+v)/2 × t<br><br>Where: u=initial velocity, v=final velocity, a=acceleration, s=displacement, t=time<br><br>💡 <strong>Tip:</strong> For free fall, a = g = 10 m/s² (downward). At maximum height, v = 0.',
+
+  work_energy:'<strong>Work, Energy & Power</strong> ⚡<br><br>• Work = F·d·cosθ (θ = angle between force & displacement)<br>• KE = ½mv² &nbsp;|&nbsp; PE = mgh<br>• Work-Energy Theorem: W_net = ΔKE<br>• Power = Work/Time = F·v<br>• Conservation of Energy: KE + PE = constant (no friction)<br><br>💡 <strong>JEE Tip:</strong> Work done by friction is always negative. Use energy conservation to avoid complex force equations.',
+
+  electricity:'<strong>Electricity & Current</strong> 🔌<br><br>• Ohm\'s Law: V = IR<br>• Power: P = VI = I²R = V²/R<br>• Resistors in Series: R = R₁+R₂+R₃<br>• Resistors in Parallel: 1/R = 1/R₁+1/R₂+1/R₃<br>• Kirchhoff\'s Laws: ΣI=0 (junction) | ΣV=0 (loop)<br><br>💡 <strong>Memory Trick:</strong> In series — current same, voltage divides. In parallel — voltage same, current divides.',
+
+  waves:'<strong>Waves & Sound</strong> 🌊<br><br>• Wave speed: v = fλ (frequency × wavelength)<br>• Speed of sound in air ≈ 340 m/s<br>• Doppler Effect: f\' = f(v±v_o)/(v∓v_s)<br>• Resonance in open pipe: f = nv/2L<br>• Resonance in closed pipe: f = (2n-1)v/4L<br><br>💡 <strong>Tip:</strong> For Doppler — observer moving towards source → frequency increases. Source moving away → frequency decreases.',
+
+  optics:'<strong>Optics — Light</strong> 🔭<br><br><strong>Mirror formula:</strong> 1/f = 1/v + 1/u<br><strong>Lens formula:</strong> 1/f = 1/v - 1/u<br><strong>Snell\'s Law:</strong> n₁sinθ₁ = n₂sinθ₂<br>• Magnification (mirror) = -v/u<br>• Critical angle: sinC = 1/n (for TIR)<br><br>💡 <strong>Sign Convention:</strong> Always measure distances from pole/optical centre. Distances in direction of incident ray = positive.',
+
+  // ── CHEMISTRY ──
+  periodic:'<strong>Periodic Table</strong> 🧪<br><br><strong>Group 1 (Alkali Metals):</strong> Li Na K Rb Cs Fr<br>→ <em>"Little Nancy\'s Kitchen Runs Crazy Fast"</em><br><br><strong>Group 17 (Halogens):</strong> F Cl Br I At → "Friendly Clever Brave Indians Always"<br><br><strong>Key Trends (→ = across period, ↓ = down group):</strong><br>• Atomic radius: ↓↑, →↓<br>• Electronegativity: →↑, ↓↓<br>• Ionization Energy: →↑, ↓↓<br>• Metallic character: →↓, ↓↑<br><br>💡 Most electronegative element = <strong>Fluorine (F)</strong>',
+
+  chemical_bonding:'<strong>Chemical Bonding</strong> 🔗<br><br>• <strong>Ionic bond:</strong> Metal + Non-metal (electron transfer)<br>• <strong>Covalent bond:</strong> Non-metal + Non-metal (electron sharing)<br>• <strong>VSEPR Theory:</strong> Electron pairs repel → shape of molecule<br>• <strong>Shapes:</strong> 2 bond pairs = linear | 3 = trigonal planar | 4 = tetrahedral | lone pairs reduce angle<br>• <strong>Hybridization:</strong> sp=180°, sp²=120°, sp³=109.5°<br><br>💡 H₂O = bent (sp³, 2 lone pairs), NH₃ = pyramidal (sp³, 1 lone pair), CH₄ = tetrahedral',
+
+  organic:'<strong>Organic Chemistry Basics</strong> 🧬<br><br><strong>Functional Groups to memorize:</strong><br>• -OH = Alcohol | -COOH = Carboxylic acid | -CHO = Aldehyde<br>• -CO- = Ketone | -NH₂ = Amine | -COO- = Ester<br><br><strong>Key Reactions:</strong><br>• Esterification: Acid + Alcohol → Ester + Water<br>• Saponification: Ester + NaOH → Soap<br>• Markovnikov\'s Rule: H adds to C with more H already<br><br>💡 <strong>IUPAC naming:</strong> Find longest chain → number from end nearest to principal group → name substituents alphabetically',
+
+  mole:'<strong>Mole Concept & Stoichiometry</strong> ⚖️<br><br>• 1 mole = 6.022 × 10²³ particles (Avogadro\'s number)<br>• Molar mass = mass of 1 mole in grams<br>• Moles = Given mass / Molar mass<br>• At STP: 1 mole gas = 22.4 L<br>• Molarity (M) = moles of solute / litres of solution<br><br>💡 <strong>Formula triangle:</strong> Moles × Molar Mass = Mass. Always balance equations before calculating!',
+
+  // ── MATHS ──
+  integration:'<strong>Integration</strong> ∫<br><br><strong>Standard Formulas:</strong><br>• ∫xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp;(n≠-1)<br>• ∫1/x dx = ln|x| + C<br>• ∫eˣ dx = eˣ + C<br>• ∫sin x dx = −cos x + C<br>• ∫cos x dx = sin x + C<br>• ∫sec²x dx = tan x + C<br><br><strong>Integration by Parts:</strong> ∫u·dv = uv − ∫v·du<br>Use <strong>LIATE</strong> rule to choose u: Logarithm, Inverse trig, Algebraic, Trig, Exponential<br><br>💡 Definite integral = area under the curve between limits.',
+
+  differentiation:'<strong>Differentiation</strong> d/dx<br><br><strong>Standard Derivatives:</strong><br>• d/dx(xⁿ) = nxⁿ⁻¹<br>• d/dx(eˣ) = eˣ<br>• d/dx(ln x) = 1/x<br>• d/dx(sin x) = cos x<br>• d/dx(cos x) = −sin x<br>• d/dx(tan x) = sec²x<br><br><strong>Rules:</strong><br>• Product: d(uv)/dx = u·v\' + v·u\'<br>• Quotient: d(u/v)/dx = (v·u\'−u·v\')/v²<br>• Chain: dy/dx = (dy/du)·(du/dx)<br><br>💡 For maxima/minima: set f\'(x)=0, then check f\'\'(x). f\'\'<0 = maximum, f\'\'> 0 = minimum.',
+
+  quadratic:'<strong>Quadratic Equations</strong> 📐<br><br>• Standard form: ax² + bx + c = 0<br>• Roots: x = [−b ± √(b²−4ac)] / 2a<br>• Discriminant D = b²−4ac<br>&nbsp;&nbsp;D>0 → 2 real distinct roots<br>&nbsp;&nbsp;D=0 → 2 equal real roots<br>&nbsp;&nbsp;D<0 → 2 complex (imaginary) roots<br>• Sum of roots = −b/a<br>• Product of roots = c/a<br><br>💡 <strong>JEE Trick:</strong> If one root is given, use sum/product to find other without quadratic formula!',
+
+  trigonometry:'<strong>Trigonometry</strong> 📏<br><br><strong>Basic ratios (SOH-CAH-TOA):</strong><br>• sin = Opposite/Hypotenuse<br>• cos = Adjacent/Hypotenuse<br>• tan = Opposite/Adjacent = sin/cos<br><br><strong>Key values:</strong><br>• sin 0°=0, sin 30°=½, sin 45°=1/√2, sin 60°=√3/2, sin 90°=1<br>• cos 0°=1, cos 30°=√3/2, cos 45°=1/√2, cos 60°=½, cos 90°=0<br><br><strong>Identities:</strong> sin²θ + cos²θ = 1 | 1+tan²θ = sec²θ | 1+cot²θ = cosec²θ<br><br>💡 Mnemonic: "All Students Take Calculus" → All/Sin/Tan/Cos positive in Q1/Q2/Q3/Q4',
+
+  // ── BIOLOGY ──
+  cell:'<strong>Cell Biology</strong> 🦠<br><br><strong>Cell Organelles & Functions:</strong><br>• <strong>Nucleus</strong> — Control centre, contains DNA<br>• <strong>Mitochondria</strong> — Powerhouse, ATP production (Krebs cycle here)<br>• <strong>Ribosome</strong> — Protein synthesis (80S eukaryote, 70S prokaryote)<br>• <strong>Chloroplast</strong> — Photosynthesis (only in plants)<br>• <strong>Golgi Apparatus</strong> — Packaging & secretion of proteins<br>• <strong>ER (RER/SER)</strong> — RER: protein synthesis | SER: lipid synthesis<br>• <strong>Lysosome</strong> — Digestion (suicidal bags)<br><br>💡 Largest cell organelle = Nucleus. Largest animal cell = Ostrich egg.',
+
+  genetics:'<strong>Genetics & Heredity</strong> 🧬<br><br><strong>Mendel\'s Laws:</strong><br>• Law of Segregation: alleles separate during gamete formation<br>• Law of Independent Assortment: genes on different chromosomes assort independently<br><br><strong>Key Terms:</strong><br>• Dominant allele masks recessive (A = dominant, a = recessive)<br>• Genotype: actual alleles (AA, Aa, aa)<br>• Phenotype: physical expression<br>• Monohybrid cross: Aa × Aa → 1AA : 2Aa : 1aa (3:1 phenotype ratio)<br>• Dihybrid cross: AaBb × AaBb → 9:3:3:1 ratio<br><br>💡 Blood groups: A(I^A), B(I^B), AB(I^AI^B codominant), O(ii recessive)',
+
+  photosynthesis:'<strong>Photosynthesis</strong> 🌱<br><br><strong>Overall equation:</strong><br>6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂<br><br><strong>Two stages:</strong><br>• <strong>Light reactions</strong> (thylakoid) → produce ATP + NADPH + O₂<br>• <strong>Dark reactions/Calvin cycle</strong> (stroma) → use ATP+NADPH to fix CO₂ into glucose<br><br>• C3 plants: first product = 3-PGA (3C) — most plants<br>• C4 plants: first product = OAA (4C) — sugarcane, maize<br>• CAM plants: stomata open at night — cactus<br><br>💡 Site = Chloroplast. Chlorophyll absorbs red & blue light most strongly.',
+
+  // ── STUDY TIPS ──
+  study:'<strong>Smart Study Schedule</strong> 📅<br><br><strong>Daily Plan:</strong><br>• 6–8 AM: Revise previous day\'s topics<br>• 9–12 PM: New concepts (best focus time!)<br>• 2–5 PM: Problem solving & DPPs<br>• 6–8 PM: Attack weak chapters<br>• 9–10 PM: Mock test analysis<br><br><strong>Weekly:</strong> 1 full mock test every Sunday<br><strong>Monthly:</strong> Complete revision of all 3 subjects<br><br>🌟 <strong>Golden Rule:</strong> 3 hrs/day × 365 days beats 10 hrs/day × 100 days. Consistency wins!',
+
+  jee_tips:'<strong>JEE Preparation Tips</strong> 🎯<br><br>1. <strong>NCERT first</strong> — 60% of JEE Mains comes from NCERT<br>2. <strong>Formula book</strong> — make your own cheat sheet<br>3. <strong>Previous papers</strong> — solve last 10 years JEE papers<br>4. <strong>Mock tests</strong> — take one full mock every week<br>5. <strong>Time management</strong> — 1 min/mark for mains, don\'t get stuck<br>6. <strong>Negative marking</strong> — attempt only 75+ questions you\'re sure about<br><br>💡 Order: Physics 30 min → Chemistry 30 min → Maths 60 min',
+
+  neet_tips:'<strong>NEET Preparation Tips</strong> 🧬<br><br>1. <strong>NCERT is Bible</strong> — 80-85% NEET questions from NCERT<br>2. <strong>Biology = 360 marks</strong> — highest weightage, don\'t ignore<br>3. <strong>Diagrams</strong> — practice drawing cell, heart, nephron, etc.<br>4. <strong>Previous papers</strong> — solve last 15 years NEET papers<br>5. <strong>Revision cycles</strong> — revise each chapter every 15 days<br>6. <strong>Mock tests</strong> — take 2 mocks per week in final 3 months<br><br>💡 Physics & Chemistry need formulas. Biology needs reading & visualization.',
+};
+
+var aiMsgCount=0;
+
+function getAIReply(msg){
+  var l=msg.toLowerCase().trim();
+
+  // Greetings
+  if(l.match(/^(hi|hello|hey|namaste|hii|helo|helllo|hai)[\s!]*$/))
+    return 'Hello! 👋 I\'m <strong>Obi AI</strong> from <strong>Eduobi</strong>. Ask me anything — Physics, Chemistry, Maths, Biology, study tips, or anything about Eduobi! 🚀';
+
+  // About Eduobi
+  if(l.match(/founder|anmol|obi enterprise|eduobi.*who|who.*made/))
+    return '<strong>Eduobi</strong> was founded by <strong>Anmol Thakur</strong> — Full Stack Developer & visionary EdTech entrepreneur. Founded in 2026 under <strong>Obi Enterprises</strong>. Mission: make world-class education affordable for every Indian student! 🎓';
+
+  if(l.match(/what is eduobi|about eduobi/))
+    return '<strong>Eduobi</strong> is India\'s affordable EdTech platform for JEE, NEET & board exam preparation. Founded in 2026 by <strong>Anmol Thakur</strong> (Obi Enterprises). Features: live batches, video lectures, test series, and me — <strong>Obi AI</strong>, your 24/7 doubt solver! 🎓';
+
+  // Physics
+  if(l.match(/newton|law.*motion|inertia|f.*=.*ma/)) return AI_KB.newton;
+  if(l.match(/kinematics|equation.*motion|uniform.*accel|projectile|v\s*=\s*u/)) return AI_KB.kinematics;
+  if(l.match(/work.*energy|kinetic.*energy|potential.*energy|power.*physics|watt|joule/)) return AI_KB.work_energy;
+  if(l.match(/ohm|resistor|current|voltage|circuit|kirchhoff|electric.*charge|capacitor/)) return AI_KB.electricity;
+  if(l.match(/wave|sound|frequency|wavelength|doppler|resonance|amplitude/)) return AI_KB.waves;
+  if(l.match(/lens|mirror|optics|refraction|reflection|snell|light|refractive/)) return AI_KB.optics;
+
+  // Chemistry
+  if(l.match(/periodic.*table|element|group.*period|valence.*electron|electronegativity|atomic.*radius/)) return AI_KB.periodic;
+  if(l.match(/chemical.*bond|ionic|covalent|vsepr|hybrid|sp3|sp2|molecular.*shape/)) return AI_KB.chemical_bonding;
+  if(l.match(/organic|functional.*group|alkane|alkene|alkyne|iupac|esterif|saponif|markovnikov/)) return AI_KB.organic;
+  if(l.match(/mole|avogadro|stoichiometry|molarity|molar.*mass|stp.*gas/)) return AI_KB.mole;
+
+  // Maths
+  if(l.match(/integrat|∫|antiderivative|area.*curve/)) return AI_KB.integration;
+  if(l.match(/differenti|derivative|d\/dx|maxima|minima|chain.*rule|product.*rule/)) return AI_KB.differentiation;
+  if(l.match(/quadratic|discriminant|roots.*equation|sum.*roots|b\^2.*4ac/)) return AI_KB.quadratic;
+  if(l.match(/trigon|sin|cos|tan|sec|cosec|cot|soh.*cah|identity.*trig/)) return AI_KB.trigonometry;
+
+  // Biology
+  if(l.match(/cell|organelle|mitochondria|ribosome|nucleus|chloroplast|golgi|lysosome/)) return AI_KB.cell;
+  if(l.match(/genetic|mendel|heredity|dna|allele|dominant|recessive|genotype|phenotype|blood.*group/)) return AI_KB.genetics;
+  if(l.match(/photosynthesis|chlorophyll|calvin|krebs|light.*reaction|c3.*plant|c4.*plant/)) return AI_KB.photosynthesis;
+
+  // Study tips
+  if(l.match(/study.*plan|schedule|routine|time.*table|how.*study/)) return AI_KB.study;
+  if(l.match(/jee.*tip|crack.*jee|jee.*strategy|jee.*prep/)) return AI_KB.jee_tips;
+  if(l.match(/neet.*tip|crack.*neet|neet.*strategy|neet.*prep/)) return AI_KB.neet_tips;
+
+  // Maths check
+  if(l.match(/calculus|algebra|geometry|matrix|vector|probability|permutation|combination|binomial/))
+    return 'I can help with <strong>'+msg+'</strong>! 📐<br><br>This is an important topic for JEE/CUET. Please be more specific — for example:<br>• "Explain integration by parts"<br>• "How to solve quadratic equations"<br>• "Probability formula"<br>• "Binomial theorem expansion"<br><br>Ask me the specific concept and I\'ll give you a detailed explanation! 💡';
+
+  // Physics catch-all
+  if(l.match(/physics|force|motion|energy|heat|thermodynamics|gravity|magnetic|electromagnetic/))
+    return 'I can help with <strong>Physics</strong>! ⚛️<br><br>Please be more specific — for example:<br>• "Newton\'s laws of motion"<br>• "Work and energy theorem"<br>• "Ohm\'s law and circuits"<br>• "Optics and lens formula"<br>• "Kinematics equations"<br><br>Ask me the specific topic! 🚀';
+
+  // Chemistry catch-all
+  if(l.match(/chem|atom|molecule|reaction|acid|base|salt|bond|compound|element/))
+    return 'I can help with <strong>Chemistry</strong>! 🧪<br><br>Please be more specific — for example:<br>• "Chemical bonding types"<br>• "Mole concept formula"<br>• "Organic chemistry reactions"<br>• "Periodic table trends"<br><br>Ask me the specific topic! ⚗️';
+
+  // Biology catch-all
+  if(l.match(/bio|human body|plant|animal|bacteria|virus|evolution|ecology/))
+    return 'I can help with <strong>Biology</strong>! 🧬<br><br>Please be more specific — for example:<br>• "Cell organelles and functions"<br>• "Mendel\'s laws of genetics"<br>• "Photosynthesis process"<br>• "Human digestive system"<br><br>Ask me the specific topic! 🌱';
+
+  // Thank you
+  if(l.match(/thank|thanks|thx|shukriya|dhanyawad/))
+    return 'You\'re welcome! 😊 Keep studying hard — <strong>Eduobi</strong> and <strong>Obi AI</strong> are always here for you. You\'ve got this! 💪🔥';
+
+  // Default intelligent fallback
+  return 'You asked about: <strong>"'+msg+'"</strong> 📚<br><br>Here\'s how to approach this topic:<br><br>1. <strong>Understand basics</strong> — Read the definition and core concept carefully<br>2. <strong>Learn formulas</strong> — Write them down and understand when to use each<br>3. <strong>Solved examples</strong> — Study 3-5 solved examples step by step<br>4. <strong>Practice</strong> — Solve easy problems first, then JEE/NEET level<br>5. <strong>Revise</strong> — Revisit after 1 day, 3 days, then 1 week<br><br>Try asking more specifically! For example:<br>• "Explain Newton\'s laws"<br>• "Integration formulas"<br>• "Periodic table trends"<br>• "Genetics and Mendel\'s laws"<br><br>I\'ll give you a complete detailed answer! 🤖';
+}
+
+function toggleAI(){
+  aiOpen=!aiOpen;
+  var panel=document.getElementById('ai-panel');
+  var fab=document.getElementById('ai-fab');
+  var not=document.getElementById('ainot');
+  panel.style.display=aiOpen?'flex':'none';
+  fab.style.display=aiOpen?'none':'flex';
+  if(not)not.style.display=aiOpen?'none':'block';
+  if(aiOpen)scrollAI();
+}
+
+function addAIMsg(role,text){
+  var box=document.getElementById('ai-msgs');
+  if(!box)return;
+  var div=document.createElement('div');
+  div.style.display='flex';
+  div.style.flexDirection='column';
+  div.style.alignItems=role==='user'?'flex-end':'flex-start';
+  div.style.animation='fadeUp .3s ease';
+  if(role==='ai'){
+    div.innerHTML='<div style="display:flex;gap:7px;align-items:flex-start"><div style="width:24px;height:24px;background:linear-gradient(135deg,#FF6B00,#E94560);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">🤖</div><div class="ai-bub">'+text+'</div></div>';
+  } else {
+    div.innerHTML='<div class="usr-bub">'+text+'</div>';
+  }
+  box.appendChild(div);
+  aiMsgCount++;
+  if(aiMsgCount>2){var chips=document.getElementById('ai-chips');if(chips)chips.style.display='none';}
+  scrollAI();
+}
+
+function scrollAI(){
+  var box=document.getElementById('ai-msgs');
+  if(box)setTimeout(function(){box.scrollTop=box.scrollHeight;},50);
+}
+
+function showTyping(){
+  var box=document.getElementById('ai-msgs');
+  var div=document.createElement('div');
+  div.id='ai-typing';
+  div.style.display='flex';div.style.gap='7px';div.style.alignItems='center';
+  div.innerHTML='<div style="width:24px;height:24px;background:linear-gradient(135deg,#FF6B00,#E94560);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px">🤖</div><div class="ai-bub" style="display:flex;gap:4px;padding:11px 14px"><span class="tdot"></span><span class="tdot" style="animation-delay:.2s"></span><span class="tdot" style="animation-delay:.4s"></span></div>';
+  box.appendChild(div);scrollAI();
+}
+
+function hideTyping(){var el=document.getElementById('ai-typing');if(el)el.remove();}
+
+function aiSend(txt){
+  var inp=document.getElementById('ai-inp');
+  var msg=txt||(inp?inp.value.trim():'');
+  if(!msg)return;
+  if(inp)inp.value='';
+  addAIMsg('user',msg);
+  showTyping();
+  setTimeout(function(){hideTyping();addAIMsg('ai',getAIReply(msg));},700+Math.random()*500);
+}
+
+// ═══════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════
+var toastTimer=null;
+function showToast(msg){
+  var old=document.getElementById('toast-el');
+  if(old)old.remove();
+  if(toastTimer)clearTimeout(toastTimer);
+  var el=document.createElement('div');
+  el.id='toast-el';el.className='toast';el.textContent='✅ '+msg;
+  document.body.appendChild(el);
+  toastTimer=setTimeout(function(){if(el.parentNode)el.remove();},2600);
+}
+
+// ═══════════════════════════════════════════
+// START
+// ═══════════════════════════════════════════
+init();
+</script>
+</body>
+</html>
